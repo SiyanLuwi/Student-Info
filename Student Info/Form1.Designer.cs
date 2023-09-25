@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmStudent));
             lblID = new Label();
             lblLastName = new Label();
             lblFirstName = new Label();
@@ -141,7 +142,6 @@
             txtLname.Name = "txtLname";
             txtLname.Size = new Size(211, 23);
             txtLname.TabIndex = 1;
-            txtLname.TextChanged += btnSave_Click;
             // 
             // txtFname
             // 
@@ -184,62 +184,69 @@
             // 
             // btnNew
             // 
+            btnNew.BackColor = Color.DarkSalmon;
             btnNew.Location = new Point(26, 448);
             btnNew.Name = "btnNew";
             btnNew.Size = new Size(119, 48);
             btnNew.TabIndex = 3;
             btnNew.Text = "NEW";
-            btnNew.UseVisualStyleBackColor = true;
+            btnNew.UseVisualStyleBackColor = false;
             btnNew.Click += btnNew_Click;
             // 
             // btnSave
             // 
+            btnSave.BackColor = Color.DarkSalmon;
             btnSave.Location = new Point(165, 448);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(119, 48);
             btnSave.TabIndex = 3;
             btnSave.Text = "SAVE";
-            btnSave.UseVisualStyleBackColor = true;
+            btnSave.UseVisualStyleBackColor = false;
             btnSave.Click += btnSave_Click;
             // 
             // btnUpdate
             // 
+            btnUpdate.BackColor = Color.DarkSalmon;
             btnUpdate.Location = new Point(26, 527);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(119, 48);
             btnUpdate.TabIndex = 3;
             btnUpdate.Text = "UPDATE";
-            btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.UseVisualStyleBackColor = false;
             btnUpdate.Click += btnUpdate_Click;
             // 
             // btnDelete
             // 
+            btnDelete.BackColor = Color.DarkSalmon;
             btnDelete.Location = new Point(165, 527);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(119, 48);
             btnDelete.TabIndex = 3;
             btnDelete.Text = "DELETE";
-            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.UseVisualStyleBackColor = false;
             btnDelete.Click += btnDelete_Click;
             // 
             // btnEdit
             // 
+            btnEdit.BackColor = Color.DarkSalmon;
             btnEdit.Location = new Point(308, 448);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(119, 48);
             btnEdit.TabIndex = 3;
             btnEdit.Text = "EDIT";
-            btnEdit.UseVisualStyleBackColor = true;
+            btnEdit.UseVisualStyleBackColor = false;
             btnEdit.Click += btnEdit_Click;
             // 
             // btnCancel
             // 
+            btnCancel.BackColor = Color.DarkSalmon;
             btnCancel.Location = new Point(308, 527);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(119, 48);
             btnCancel.TabIndex = 3;
             btnCancel.Text = "CANCEL";
-            btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.UseVisualStyleBackColor = false;
+            btnCancel.Click += btnCancel_Click;
             // 
             // listView1
             // 
@@ -294,7 +301,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.AppWorkspace;
+            BackColor = Color.Moccasin;
             ClientSize = new Size(1187, 626);
             Controls.Add(listView1);
             Controls.Add(btnCancel);
@@ -318,6 +325,7 @@
             Controls.Add(lblLastName);
             Controls.Add(lblID);
             ForeColor = SystemColors.ControlText;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmStudent";
             Text = "Student Information";
             Load += frmStudent_Load;

@@ -53,21 +53,19 @@ namespace Student_Info
             string fname = txtFname.Text;
             string mname = txtMname.Text;
             string address = txtAddress.Text;
-            if (cbCourse.SelectedItem != null)
-            {
-                string course = cbCourse.SelectedItem.ToString();
-                string year = cbYear.SelectedItem != null ? cbYear.SelectedItem.ToString() : null;
 
-                string sql = "INSERT INTO tbl_students (last_name, first_name, middle_name, address, course, s_year) VALUES " +
+            string course = cbCourse.SelectedItem.ToString();
+            string year = cbYear.SelectedItem != null ? cbYear.SelectedItem.ToString() : null;
+
+            string sql = "INSERT INTO tbl_students (last_name, first_name, middle_name, address, course, s_year) VALUES " +
                     "('" + lname + "','" + fname + "','" + mname + "','" + address + "','" + course + "','" + year + "')";
 
-                myconn = new MySqlConnection(mycon);
-                myconn.Open();
-                mycmd = new MySqlCommand(sql, myconn);
-                mycmd.ExecuteNonQuery();
+            myconn = new MySqlConnection(mycon);
+            myconn.Open();
+            mycmd = new MySqlCommand(sql, myconn);
+            mycmd.ExecuteNonQuery();
 
-                loadStudents(listView1);
-            }
+            loadStudents(listView1);
 
         }
         private void loadCourse(ComboBox cbCourse)
@@ -132,14 +130,20 @@ namespace Student_Info
         }
         private void listView1_DoubleClick(object sender, EventArgs e)
         {
-            ListViewItem itm = listView1.SelectedItems[0];
-            txtID.Text = itm.Text;
-            txtLname.Text = itm.SubItems[1].Text;
-            txtFname.Text = itm.SubItems[2].Text;
-            txtMname.Text = itm.SubItems[3].Text;
-            txtAddress.Text = itm.SubItems[4].Text;
-            cbCourse.Text = itm.SubItems[5].Text;
-            cbYear.Text = itm.SubItems[6].Text;
+            ListViewItem selectedItem = listView1.SelectedItems[0];
+            // Update the fields with the selected item's data
+            txtID.Text = selectedItem.SubItems[0].Text;
+            txtLname.Text = selectedItem.SubItems[1].Text;
+            txtFname.Text = selectedItem.SubItems[2].Text;
+            txtMname.Text = selectedItem.SubItems[3].Text;
+            txtAddress.Text = selectedItem.SubItems[4].Text;
+            cbCourse.Text = selectedItem.SubItems[5].Text;
+            cbYear.Text = selectedItem.SubItems[6].Text;
+
+            // Disable edit and delete buttons
+            btnEdit.Enabled = true;
+            btnDelete.Enabled = true;
+
         }
         private void btnEdit_Click(object sender, EventArgs e)
         {
@@ -148,7 +152,7 @@ namespace Student_Info
             btnNew.Enabled = false;
             btnDelete.Enabled = false;
             btnCancel.Enabled = false;
-            txtboxes();
+
         }
         private void btnUpdate_Click(object sender, EventArgs e)
         {
@@ -197,6 +201,14 @@ namespace Student_Info
                 btnDelete.Enabled = true;
             }
         }
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            DialogResult rslt = MessageBox.Show("Do you really want to cancel this operation?", "DELETE", MessageBoxButtons.YesNo);
+            if (rslt == DialogResult.Yes)
+            {
+                falseDefault();
+            }
+        }
 
         private void falseDefault()
         {
@@ -212,11 +224,15 @@ namespace Student_Info
             txtLname.Text = null;
             txtAddress.Text = null;
             txtMname.Text = null;
+            txtID.Text = null;
             txtID.Enabled = false;
             txtLname.Enabled = false;
             txtMname.Enabled = false;
             cbCourse.Enabled = false;
             cbYear.Enabled = false;
+            cbCourse.SelectedIndex = -1;
+            cbYear.SelectedIndex = -1;
+            listView1.Enabled = false;
         }
         private void trueDefault()
         {
@@ -232,17 +248,8 @@ namespace Student_Info
             txtMname.Enabled = true;
             cbCourse.Enabled = true;
             cbYear.Enabled = true;
+            listView1.Enabled = true;
         }
-        private void txtboxes()
-        {
-            txtAddress.Enabled = true;
-            txtFname.Enabled = true;
-            txtID.Enabled = true;
-            txtLname.Enabled = true;
-            txtMname.Enabled = true;
-        }
-
-
 
 
     }
