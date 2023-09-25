@@ -203,7 +203,7 @@ namespace Student_Info
         }
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            DialogResult rslt = MessageBox.Show("Do you really want to cancel this operation?", "DELETE", MessageBoxButtons.YesNo);
+            DialogResult rslt = MessageBox.Show("Do you really want to cancel this operation?", "CANCEL", MessageBoxButtons.YesNo);
             if (rslt == DialogResult.Yes)
             {
                 falseDefault();
